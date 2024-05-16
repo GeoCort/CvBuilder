@@ -1,0 +1,43 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+}
+button{
+    background-color: inherit;
+    border:none;
+}
+.hidden{
+    display: none;
+    height: 0; width: 0; opacity: 0;
+}
+button:hover{
+    background-color:aqua;
+}
+.form{
+    align-items: center;
+    background-color: red;
+}
+form > div{
+    padding:.5rem;
+    
+}
+.flex-col{
+    display:flex;
+    flex-direction: column;
+}
+input{
+    border:none;
+    border-radius:5px;
+    padding:.3rem;
+}
+.text-field{
+    font-size: 20px;
+}
+.headerEditContainer{
+    
+    max-width: 33%;
+}
+.flex-end{
+    display:flex;
+    justify-content: end;
+    padding:1rem;
+}

@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import Header from "./Header"
 function App() {
   return (
-    <div className="bg-slate-500 rounded-lg ">
+    <div className=" rounded-lg ">
       <Header />
     </div>
 

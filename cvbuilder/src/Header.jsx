@@ -21,10 +21,29 @@ function Header(){
     const [afterDate, setAfterDate] = useState("")
     const [currDescription, setCurrDescription] = useState("")
     const [description, setDescription] = useState([])
+    const [experience, setExperience] = useState([]);
     function addDescription(){
-        let copy = [...description];
+        let copy = []
+        copy.push(...description)
         copy.push(currDescription)
         setDescription(copy)
+        setCurrDescription("");
+    }
+    function createExpObj(){
+        let copy = []
+        copy.push(...experience)
+        copy.push({
+            jobTitle: jobTitle, beforeDate:beforeDate,afterDate:afterDate,description:description
+         })
+         clearExperience()
+         setExperience(copy)
+    }
+    function clearExperience(){
+        setAfterDate("")
+        setBeforeDate("")
+        setCurrDescription("")
+        setJobTitle("")
+        setToggleXp(!toggleXp)
     }
     return(
         <div className='max-w-full'>
@@ -46,13 +65,13 @@ function Header(){
                 </div>
                 <div className='flex items-center flex-col'>
                 <label htmlFor="email">Email</label>
-                <input type='email' id='email' placeholder='Enter your an email' onChange={e => setEmailForm(e.target.value)} required value={emailForm} ></input>
+                <input type='email' id='email' placeholder='Enter your an email' onChange={e => setEmailForm(e.target.value)} required={true} value={emailForm} ></input>
                 </div>
                 <div className='flex items-center flex-col'>
                 <label htmlFor="phoneNumber">Phone #</label>
                 <input type='email' id='phoneNumber' placeholder='Enter your an email' onChange={e => setPhoneNumberForm(e.target.value)} required value={phoneNumbeForm} ></input>
                 </div>
-                <button className='hover:bg-slate-500' onClick={(e)=>{
+                <button className='hover:bg-slate-500' type='submit' onClick={(e)=>{
                     e.preventDefault();
                     setFirstName(firstNameForm)
                     setLastName(lastNameForm)
@@ -88,7 +107,7 @@ function Header(){
                 </div>
                 <button className='hover:bg-slate-500' onClick={(e)=>{
                     e.preventDefault();
-                    console.log(e)
+                    createExpObj();
                 }}>submit</button>
             </form>
         </div>
@@ -101,10 +120,7 @@ function Header(){
         phoneNumber={phoneNumber} />
 
         <ResumeExperience 
-        beforeDate = {beforeDate}
-        afterDate = {afterDate}
-        jobTitle = {jobTitle}
-        description={description}
+        experience={experience}
         />
         </div>
     </div>

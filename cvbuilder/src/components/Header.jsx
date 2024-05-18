@@ -57,8 +57,8 @@ function Header(){
     return(
     <div className='max-w-full'>
         <div className='grid grid-cols-3 grid-rows-1 p-5'>
-            <div className='border-r-2 pr-4'>
-            <div  className={toggleMenu === false ? '':'rounded-lg bg-slate-50'}>
+            <div className='flex flex-col gap-1 print:hidden border-r-2 pr-4 bg-red-300 p-2 '>
+            <div noprint className={toggleMenu === false ? '':'rounded-lg  bg-slate-50'}>
                     <button className='w-full flex justify-between items-center p-2  rounded-lg  bg-slate-50 hover:bg-blue-300' onClick={()=> setToggleMenu(!toggleMenu)}>
                         <span className='text-3xl'>Contact Information</span>
                         <span className='text-xl'>{toggleMenu === false ? "+" : "-"}</span>
@@ -141,7 +141,7 @@ function Header(){
                 </div>
             </div>
             {/* right half */}
-            <div className='p-10 bg-green-200 col-span-2'>
+            <div className='p-10 bg-green-200 col-span-2 print:col-span-3'>
                 <ResumeHeader
                 firstName={firstName}
                 lastName={lastName}

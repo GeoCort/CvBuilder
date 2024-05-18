@@ -10,7 +10,7 @@ function ResumeExperience(props){
                         <span className="italic text-xs ml-5">{exp.beforeDate} - {exp.afterDate}</span>
                         </div>
                         <ul className="list-disc ml-8">
-                            {exp.description?.map(x => <li className="bold text-sm">{x}</li>)}
+                            {exp.description?.map(x => <li key={x} className="bold text-sm">{x}</li>)}
                         </ul>
                     </div>
                 )

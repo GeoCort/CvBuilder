@@ -16,7 +16,9 @@ function Header(){
     const [lastNameForm, setLastNameForm] = useState("");
     const [emailForm, setEmailForm] = useState("");
     const [phoneNumbeForm,setPhoneNumberForm] = useState("");
-    
+    // Skills
+    const [skillsText, setSkillsText] = useState("")
+    const [skills, setSkills] = useState([])
     // Experience
     const [jobTitle, setJobTitle] = useState("")
     const [beforeDate, setBeforeDate] = useState("")
@@ -46,13 +48,19 @@ function Header(){
         setJobTitle("")
         setToggleXp(!toggleXp)
     }
+    function getSkills(){
+        let skillArr = skillsText.split(" ");
+        setSkills(skillArr)
+        setSkillsText("")
+        setToggleMenu2(!toggleMenu2)
+    }
     return(
     <div className='max-w-full'>
         <div className='grid grid-cols-3 grid-rows-1 p-5'>
             <div className='border-r-2 pr-4'>
             <div  className={toggleMenu === false ? '':'rounded-lg bg-slate-50'}>
                     <button className='w-full flex justify-between items-center p-2  rounded-lg  bg-slate-50 hover:bg-blue-300' onClick={()=> setToggleMenu(!toggleMenu)}>
-                        <span>Contact Information</span>
+                        <span className='text-3xl'>Contact Information</span>
                         <span className='text-xl'>{toggleMenu === false ? "+" : "-"}</span>
                     </button>
                     <form className={toggleMenu === false?' m-5 hidden bg-slate-500' :"flex flex-col m-5 bg-slate-50"} >
@@ -85,24 +93,25 @@ function Header(){
                 {/* Skills */}
                 
                 <div  className={toggleMenu2 === false ? '':'rounded-lg bg-slate-50'} >
-                    <button className='w-full flex justify-between items-center p-2  rounded-lg  bg-slate-50 hover:bg-blue-300' onClick={()=> setToggleMenu(!toggleMenu)}>
-                        <span>Skills</span>
-                        <span className='text-xl'>{toggleMenu === false ? "+" : "-"}</span>
+                    <button className='w-full flex justify-between items-center p-2  rounded-lg  bg-slate-50 hover:bg-blue-300' onClick={()=> setToggleMenu2(!toggleMenu2)}>
+                        <span className='text-3xl'>Skills</span>
+                        <span className='text-xl'>{toggleMenu2 === false ? "+" : "-"}</span>
                     </button>
                     <form className={toggleMenu2 === false?' m-5 hidden bg-slate-500' :"flex flex-col m-5 bg-slate-50"} >
                         <div className='flex items-center flex-col'>
-                        <label htmlFor="firstName">First Name</label>
-                        <input type='text' id='firstName' placeholder='Enter your first name' onChange={e => setFirstNameForm(e.target.value)} required value={firstNameForm} ></input>
+                            <label htmlFor="Skills">Enter your Skills below</label>
+                            <textarea value={skillsText} onChange={e=>setSkillsText(e.target.value)}></textarea>
                         </div>
                         <button className='hover:bg-slate-500' type='submit' onClick={(e)=>{
                             e.preventDefault();
+                            getSkills();
                         }}>submit</button>
                     </form>
                 </div>
                 {/* Experience */}
                 <div  className={toggleXp === false ? '':'rounded-lg bg-slate-50 '}>
                     <button className='w-full flex justify-between items-center p-2  rounded-lg  bg-slate-50 hover:bg-blue-300' onClick={()=> setToggleXp(!toggleXp)}>
-                        <span className='text-'>Experience</span>
+                        <span className='text-3xl'>Experience</span>
                         <span className='text-xl'>{toggleXp === false ? "+" : "-"}</span>
                     </button>
                     <form className={toggleXp === false?' m-5 hidden bg-slate-500' :"flex flex-col m-5 bg-slate-50"} >
@@ -132,7 +141,7 @@ function Header(){
                 </div>
             </div>
             {/* right half */}
-            <div className='m-10 bg-green-200 col-span-2'>
+            <div className='p-10 bg-green-200 col-span-2'>
                 <ResumeHeader
                 firstName={firstName}
                 lastName={lastName}
@@ -140,7 +149,7 @@ function Header(){
                 phoneNumber={phoneNumber} />
                 <ResumeSkills 
                 // change later
-                    list="meow"
+                    skills={skills}
                 />
                 <ResumeExperience 
                 experience={experience}
